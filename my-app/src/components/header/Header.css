@@ -1,0 +1,146 @@
+.header {
+  background-color: #003580;
+  color: white;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.headerContainer {
+  width: 100%;
+  margin: 20px 0px 100px 0px;
+  max-width: 1024px;
+}
+
+.headerContainer.listMode {
+  margin: 20px 0px 0px 0px;
+}
+
+.headerList {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.headerListItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px;
+}
+
+.headerListItem:hover {
+  border: 1px solid white;
+  padding: 12px;
+  border-radius: 20px;
+}
+/*
+.headerListItem.active {
+  border: 1px solid white;
+  padding: 10px;
+  border-radius: 20px;
+}*/
+
+.headerDesc {
+  margin: 20px 0px;
+}
+
+.headerBtn {
+  background-color: #0071c2;
+  color: white;
+  font-weight: 500;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.headerBtn:hover {
+  background-color: #003580;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+  .headerSearch {
+    flex-direction: column;
+  }
+}
+.headerSearch {
+  height: 30px;
+  background-color: white;
+  border: 3px solid #febb02;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0px;
+  border-radius: 5px;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.headerIcon {
+  color: gray;
+}
+
+.headerSearchText {
+  color: gray;
+  cursor: pointer;
+}
+
+.headerSearchItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerSearchInput {
+  border: none;
+  outline: none;
+}
+
+.date {
+  position: absolute;
+  top: 50px;
+  z-index: 2;
+}
+
+.options {
+  box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 00px 0px 10px -5px rgba(0, 0, 0.4);
+  position: absolute;
+  top: 50px;
+  color: gray;
+  z-index: 2;
+  background-color: white;
+}
+
+.optionItem {
+  width: 200px;
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+}
+
+.optionCounter {
+  display: flex;
+  gap: 10px;
+  color: black;
+  font-size: 12px;
+}
+
+.optionCounterBtn {
+  background-color: white;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  color: #0071c2;
+  cursor: pointer;
+  border: 1px solid #0071c2;
+}
+
+.optionCounterBtn:disabled {
+  cursor: not-allowed;
+}
