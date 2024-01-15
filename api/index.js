@@ -31,10 +31,22 @@ mongoose.connection.on("disconnected", () => {
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+
 app.use("/api/auth", authRoute);
 app.use("/api/rooms", roomRoute);
 app.use("/api/hotels", hotelRoute);
 app.use("/api/users", userRoute);
+
+app.use((err, req, res, next) => {
+  const errStatus = err.status || 500;
+  const errMessage = err.message || "Something went wrong!";
+  return res.status(errStatus).json({
+    success: false,
+    status: errStatus,
+    message: errMessage,
+    stack: err.stack,
+  });
+});
 
 app.listen(8800, () => {
   connect();
