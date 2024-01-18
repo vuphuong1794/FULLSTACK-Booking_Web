@@ -37,7 +37,7 @@ export const login = async (req, res, next) => {
     //khong lo password khi login thanh cong
     const { password, isAdmin, ...otherDetails } = user._doc;
 
-    //luu thong tin nguoi dung va luu vao cookie de dung xac minh cac tac vu cua admin
+    //luu thong tin nguoi dung, su dung token base authentication va luu vao cookie de dung xac minh cac tac vu cua admin
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT
