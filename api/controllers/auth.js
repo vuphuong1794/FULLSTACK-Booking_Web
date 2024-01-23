@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   try {
-    //tranh tiet lo password cua user
+    //hashed user password
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
@@ -32,18 +32,18 @@ export const login = async (req, res, next) => {
     );
 
     if (!checkPassword)
-      return next(createdError(400, "Wrong password or username!"));
+      return next(createdError(403, "Wrong password or username!"));
 
-    //khong lo password khi login thanh cong
+    //khong hien password va thong tin admin
     const { password, isAdmin, ...otherDetails } = user._doc;
 
-    //luu thong tin nguoi dung, su dung token base authentication va luu vao cookie de dung xac minh cac tac vu cua admin
+    //luu thong tin nguoi dung, su dung token base authentication va luu vao cookie de dung xac minh va phan quyen
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT
     );
     res
-      //khong cho tiet lo thong tin cua client
+      //khong cho client lay cookie thong qua javascript
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .send({ ...otherDetails });
