@@ -1,15 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.css";
 import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <div className="Logo">
-          <h2 className="logo_Text">HiBooking</h2>
-          <FontAwesomeIcon icon={faPlaneDeparture} className="logoIcon" />
-        </div>
+        <Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
+          <div className="Logo">
+            <h2 className="logo_Text">HiBooking</h2>
+            <FontAwesomeIcon icon={faPlaneDeparture} className="logoIcon" />
+          </div>
+        </Link>
         <div className="navItems">
           <button className="navButton">Register</button>
           <button className="navButton">Login</button>
