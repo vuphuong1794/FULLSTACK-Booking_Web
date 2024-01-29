@@ -5,6 +5,7 @@ const useFetch = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  //lấy lại data mới mỗi khi người dùng thay đổi URL
   useEffect(() => {
     const fetchData = async () => {
       try {
