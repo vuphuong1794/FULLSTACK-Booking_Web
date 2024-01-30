@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-//import "./login.css";
+import "./Login.css";
 import { AuthContext } from "../../context/authContext";
 import { useContext, useState } from "react";
 
@@ -35,15 +35,15 @@ const Login = () => {
       <div className="loginContainer">
         <input
           type="text"
-          classname="loginInput"
+          className="loginInput"
           onChange={handleChange}
           placeholder="username"
           id="username"
         />
         <input
           type="text"
-          classname="loginInput"
-          onchange={handleChange}
+          className="loginInput"
+          onChange={handleChange}
           placeholder="password"
           id="password"
         />
