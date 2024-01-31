@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 const Login = () => {
   const { user, loading, error, dispatch } = useContext(AuthContext);
 
-  const [credential, setCredential] = useState({
+  const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined,
   });
@@ -15,21 +15,25 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setCredential((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const handleClicked = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("auth/login", credential);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+      const res = await axios.post(
+        "http://localhost:8800/api/auth/login",
+        credentials
+      );
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILED", payload: err.respone.data });
+      dispatch({ type: "LOGIN_FAILED", payload: err.response.data });
     }
   };
 
+  console.log(user);
   return (
     <div className="login">
       <div className="loginContainer">
@@ -47,7 +51,7 @@ const Login = () => {
           placeholder="password"
           id="password"
         />
-        <button disabled={loading} onClick={handleClicked} className="lButton">
+        <button disabled={loading} onClick={handleClick} className="loginBtn">
           Login
         </button>
         {error && <span>{error.message}</span>}
