@@ -40,7 +40,8 @@ export const login = async (req, res, next) => {
     //luu thong tin nguoi dung, su dung token base authentication va luu vao cookie de dung xac minh va phan quyen
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
-      process.env.JWT
+      process.env.JWT,
+      { expiresIn: "30s" }
     );
     res
       //khong cho client lay cookie thong qua javascript
