@@ -47,7 +47,7 @@ export const login = async (req, res, next) => {
       //khong cho client lay cookie thong qua javascript
       .cookie("access_token", token, { httpOnly: true })
       .status(200)
-      .send({ ...otherDetails });
+      .send({ details: {...otherDetails}, isAdmin });
   } catch (err) {
     next(err);
   }
