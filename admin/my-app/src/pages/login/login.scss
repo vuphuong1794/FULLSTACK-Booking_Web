@@ -1,0 +1,38 @@
+.login {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-image: url(https://data.designervn.net/2019/09/9676_3c1b0f70d986fd4e324cb43331b33b81.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+  
+  
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .loginInput {
+    height: 30px;
+    padding: 10px;
+  }
+  
+  .loginBtn {
+    background-color: #0071c2;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .loginBtn:disabled {
+    background-color: #0071c28c;
+    cursor: not-allowed;
+  }
+}

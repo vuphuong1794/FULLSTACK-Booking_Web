@@ -3,12 +3,13 @@ import { DataGrid } from "@mui/x-data-grid";
 import datatableSource, { userColumns, userRows } from "../../datatableSource";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
+import useFetch from "../../hook/useFetch";
 
 const DataTable = () => {
-  const [data, setData] = useState(userRows);
+  const {data, loading, error} = useFetch("http:/localhost:8800/users")
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    //setData(data.filter((item) => item.id !== id));
   };
   const actionColumn = {
     field: "action",
