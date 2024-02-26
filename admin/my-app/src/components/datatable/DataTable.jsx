@@ -5,7 +5,8 @@ import "./dataTable.scss";
 import { Link } from "react-router-dom";
 import useFetch from "../../hook/useFetch";
 
-const DataTable = () => {
+const DataTable = ({item}) => {
+  //fetch data tu api 
   const {data, loading, error} = useFetch("http:/localhost:8800/users")
 
   const handleDelete = (id) => {
@@ -17,17 +18,19 @@ const DataTable = () => {
     width: 200,
     renderCell: (params) => {
       return (
-        <div className="cellAction">
-          <Link to="/users/test" style={{ textDecoration: "none" }}>
-            <div className="viewBtn">View</div>
-          </Link>
-          <div
-            className="deleteBtn"
-            onClick={() => handleDelete(params.row.id)}
-          >
-            Delete
+        <>
+          <div className="cellAction">
+            <Link to={`/users/${params._id}`} style={{ textDecoration: "none" }}>
+              <div className="viewBtn">View</div>
+            </Link>
+            <div
+              className="deleteBtn"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Delete
+            </div>
           </div>
-        </div>
+        </>
       );
     },
   };
