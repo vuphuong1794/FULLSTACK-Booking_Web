@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
+
   return (
     <div className="navbar">
       <div className="navContainer">

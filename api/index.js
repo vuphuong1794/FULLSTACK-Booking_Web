@@ -28,7 +28,12 @@ mongoose.connection.on("disconnected", () => {
 });
 
 //middlewares
-app.use(cors());
+//fix loi khong gui duoc cookie chua token cua nguoi dung
+app.use(cors({
+  origin:'http://localhost:3000',
+  credentials: true,
+}));
+
 app.use(cookieParser());
 app.use(express.json());
 
