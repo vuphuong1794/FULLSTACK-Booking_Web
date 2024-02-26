@@ -5,22 +5,16 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   try {
-    //hashed user password
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
     const newUser = new User({
-    /*
-      username: req.body.username,
-      email: req.body.email,
-      */
-
-     //lay het thong tin cua nguoi dung 
-     ...req.body,
+      ...req.body,
       password: hash,
     });
+
     await newUser.save();
-    res.status(200).send("User has been created!  ");
+    res.status(200).send("User has been created.");
   } catch (err) {
     next(err);
   }
@@ -29,14 +23,14 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return next(createdError(404, "User not found!"));
+    if (!user) return next(createError(404, "User not found!"));
 
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
     if (!isPasswordCorrect)
-      return next(createdError(400, "Wrong password or username!"));
+      return next(createError(400, "Wrong password or username!"));
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
