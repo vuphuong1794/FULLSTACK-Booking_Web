@@ -1,17 +1,35 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch.js"
+import axios from "axios";
 
-const Datatable = () => {
-  const {data, loading, error} = useFetch("http://localhost:8800/api/users")
+
+
+const Datatable = ({columns}) => {
+  const location = useLocation();
+  const path = location.pathname.split("/")[1];
+  const [list, setList] = useState();
+  const {data, loading, error} = useFetch(`http://localhost:8800/api/${path}`)
   
-  
-  const handleDelete = (id) => {
-    //setData(data.filter((item) => item.id !== id));
+  //set lai du lieu moi khi co thay doi
+  useEffect(()=>{
+    setList(data)
+  }, [data]);
+
+  //them withCredentials: true (tranh loi khong xac thuc duoc nguoi dung cua axios)
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8800/api/${path}/${id}`,{withCredentials: true,})
+      setList(list.filter((item) => item._id !== id));
+    } catch(err){
+      console.log(err);
+    }
   };
+
+
 
   const actionColumn = [
     {
@@ -26,7 +44,7 @@ const Datatable = () => {
             </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             >
               Delete
             </div>
@@ -39,14 +57,14 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Add New User
-        <Link to="/users/new" className="link">
+        <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
+        columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
