@@ -8,8 +8,10 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
+  const {user} = useContext(AuthContext);
   const { dispatch } = useContext(DarkModeContext);
 
   return (
@@ -50,6 +52,7 @@ const Navbar = () => {
               alt=""
               className="avatar"
             />
+            {user ? user.username : "" }
           </div>
         </div>
       </div>

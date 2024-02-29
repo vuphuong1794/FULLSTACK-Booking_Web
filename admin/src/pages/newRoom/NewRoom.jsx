@@ -1,49 +1,11 @@
-import "./new.scss";
+import "./newRoom.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import axios from "axios"
-import {Navigate} from "react-router-dom"
 
-const New = ({ inputs, title }) => {
+const NewRoom = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [info, setInfo] = useState({})
-
-  const [clicked, setClicked]=useState(false)
-
-  const handleChange = (e) =>{
-    setInfo((prev)=>({...prev, [e.target.id]: e.target.value}))
-  }
-
-  const handleClick = async (e)=>{
-    
-      e.preventDefault();
-      const data = new FormData();
-      data.append("file", file ? file : "https://i.ibb.co/MBtjqXQ/no-avatar.gif") 
-      
-      data.append("upload_preset", "upload")
-      
-      try{
-        const uploadRes = await axios.post("https://api.cloudinary.com/v1_1/dmjouaoml/image/upload", data)
-        
-        //console.log(uploadRes.data);
-        const {url} = uploadRes.data;
-
-        const newUser = {
-          ...info,
-          img: url
-        }
-
-        await axios.post("http://localhost:8800/api/auth/register", newUser);
-       
-        setClicked(true)
-      }catch(err){
-        console.log(err);
-        
-    }
-  }
-  console.log(info)
 
   return (
     <div className="new">
@@ -81,13 +43,10 @@ const New = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} onChange={handleChange} id={input.id}/>
+                  <input type={input.type} placeholder={input.placeholder} />
                 </div>
               ))}
-             
-              <button onClick={handleClick}>Send</button>
-              
-                {clicked && <Navigate to="/users"/>}
+              <button>Send</button>
             </form>
           </div>
         </div>
@@ -96,4 +55,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default NewRoom;
