@@ -7,12 +7,18 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
   const {user} = useContext(AuthContext);
-  const { dispatch } = useContext(DarkModeContext);
+  //const { dispatch } = useContext(DarkModeContext);
+  const [click, setClick] =  useState(false);
+  const {dispatch} = useContext(AuthContext)
+
+  const handleCLick = ()=>{
+    dispatch({ type: "LOGOUT"})
+  }
 
   return (
     <div className="navbar">
@@ -52,7 +58,14 @@ const Navbar = () => {
               alt=""
               className="avatar"
             />
-            {user ? user.username : "" }
+            {user && <div className="user" onClick={()=>setClick(true)}>{user.username}</div> }
+
+            {
+              click && 
+              <div className="choice">
+                <button onClick={handleCLick}>Logout</button>
+              </div>
+            }
           </div>
         </div>
       </div>

@@ -6,11 +6,14 @@ import { useState } from "react";
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import {Navigate} from "react-router-dom"
+
 
 const NewHotel = () => {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
+  const [clicked, setClicked] = useState(false)
 
   const { data, loading, error } = useFetch("http://localhost:8800/api/rooms");
 
@@ -53,6 +56,7 @@ const NewHotel = () => {
       };
 
       await axios.post("http://localhost:8800/api/hotels", newhotel, {withCredentials: true});
+      setClicked(true);
     } catch (err) {console.log(err)}
   };
 
@@ -62,7 +66,7 @@ const NewHotel = () => {
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>Add New Product</h1>
+          <h1>Add New Hotel</h1>
         </div>
         <div className="bottom">
           <div className="left">
@@ -122,6 +126,7 @@ const NewHotel = () => {
                 </select>
               </div>
               <button onClick={handleClick}>Send</button>
+              {clicked && <Navigate to="/hotels"/>}
             </form>
           </div>
         </div>
