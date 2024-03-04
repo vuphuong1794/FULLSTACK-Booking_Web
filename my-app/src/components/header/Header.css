@@ -1,10 +1,13 @@
 .header {
-  background-color: #003580;
+  background-image: url("https://kenhhomestay.com/wp-content/uploads/2018/09/resort-vinh-hy-1.jpg");
   color: white;
   display: flex;
   justify-content: center;
   position: relative;
+  background-repeat: no-repeat;
+  background-size: 100vw;
 }
+
 
 .headerContainer {
   width: 100%;
@@ -19,7 +22,11 @@
 .headerList {
   display: flex;
   gap: 40px;
-  margin-bottom: 50px;
+ 
+  background-color: #315b85;
+  border-radius: 20px;
+
+
 }
 
 .headerListItem {
@@ -30,16 +37,17 @@
 }
 
 .headerListItem:hover {
-  border: 1px solid white;
   padding: 12px;
   border-radius: 20px;
+  background-color: rgb(26,79,160);
 }
-/*
+
 .headerListItem.active {
   border: 1px solid white;
   padding: 10px;
   border-radius: 20px;
-}*/
+  background-color: rgb(26,79,160);
+}
 
 .headerDesc {
   margin: 20px 0px;

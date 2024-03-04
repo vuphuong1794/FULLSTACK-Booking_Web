@@ -5,24 +5,9 @@ import {useNavigate} from "react-router-dom"
 import { searchContext } from "../../context/searchContext";
 
 const PropertyList = () => {
+  const [selectType, setSelectType] = useState(""); 
   const navigate = useNavigate();
-  const [destination, setDestination] = useState("baria");
 
-  const [dates, setDates] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-
-  const { dispatch } = useContext(searchContext);
 
   const { data, loading, error } = useFetch(
     "http://localhost:8800/api/hotels/countByType"
@@ -37,25 +22,24 @@ const PropertyList = () => {
   ];
 
   //khi ấn vào mỗi bức hình nó sẽ dẫn đến API có path tương ứng
-  const handleClick=()=>{
-    dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
-    navigate("/hotels", {
-      state: { destination, dates, options },
-    });
-  }
+ const handleClick=(type)=>{  
+  setSelectType(type);
+  
+ }
 
   return (
     <div className="pList">
       {loading ? (
         "loading"
-      ) : (
+      ) : error ? (
+        "Error fetching data") : (
         <>
           {data &&
             images.map((img, i) => (
               <div className="pListItem" key={i}>
-                <img src={img} alt="" className="pListImg" onClick={handleClick} />
+                <img src={img} alt="" className="pListImg" onClick={()=>(handleClick(data[i]?.type))}/>
                 <div className="pListTitles">
-                  <h1>{data[i]?.type}</h1>
+                  <h1 >{data[i]?.type}</h1>
                   <h2>
                     {data[i]?.count} {data[i]?.type}
                   </h2>
