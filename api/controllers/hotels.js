@@ -91,6 +91,7 @@ export const countByType = async (req, res, next) => {
   }
 };
 
+
 export const getHotelRooms = async (req, res, next) => {
   try {
     const hotel = await Hotels.findById(req.params.id);

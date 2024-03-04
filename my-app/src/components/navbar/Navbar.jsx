@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Navbar.css";
-import { faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCircleQuestion, faPlaneDeparture } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
@@ -28,8 +28,29 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faPlaneDeparture} className="logoIcon" />
           </div>
         </Link>
-        {user ? (
-          <div className="user" onClick={handleCLick}>{user.username}</div>
+        <div className="navItem">
+          <div className="nItem">
+            <span>VND</span>
+          </div>
+          <div className="nItem">
+            <img src={"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png"} className="country"/>
+          </div>
+          <div className="nItem">
+          <FontAwesomeIcon icon={faCircleQuestion} className="logoIcon" />
+          </div>
+          <div className="nItem">
+            <FontAwesomeIcon icon={faBell} className="logoIcon" />
+            <div className="counter">1</div>
+          </div>
+          <div className="nItem">
+            <span className="property">List your property</span>
+          </div>
+          {user ? (
+          <div className="user" onClick={handleCLick}>
+            <div>
+              {user.img ? <img src={user.img} className="avatar"/> : <img src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}/>}</div>
+            {user.username}
+            </div>
         ) : (
           <div className="navItems">
             <Link to="/register">
@@ -43,6 +64,8 @@ const Navbar = () => {
         {
           click && <button className="logOut" onClick={handleLogout}>Logout</button>
         }
+        </div>
+
       </div>
     </div>
   );
