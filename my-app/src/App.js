@@ -5,6 +5,8 @@ import List from "./pages/Home/list/List";
 import Hotel from "./pages/Home/Hotel/Hotel";
 import Login from "./pages/login/Login";
 import List2 from "./pages/Home/list2/List2"
+import Register from "./pages/register/Register";
+import { userInputs } from "./formSource";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/type" element={<List2 />} />
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register inputs={userInputs}/>}/>
       </Routes>
     </BrowserRouter>
   );
