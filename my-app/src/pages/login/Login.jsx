@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 
 const Login = () => {
   const { user, loading, error, dispatch } = useContext(AuthContext);
-  
+  const [count, setCount] = useState(0)
 
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -30,7 +30,9 @@ const Login = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/");
     } catch (err) {
+      setCount(count+1)
       dispatch({ type: "LOGIN_FAILED", payload: err.response.data });
+      
     }
   };
 
@@ -56,6 +58,7 @@ const Login = () => {
           Login
         </button>
         {error && <span>{error.message}</span>}
+        {count > 2 && navigate("/register")}
       </div>
     </div>
   );

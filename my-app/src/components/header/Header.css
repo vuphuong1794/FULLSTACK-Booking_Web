@@ -11,7 +11,7 @@
 
 .headerContainer {
   width: 100%;
-  margin: 20px 0px 100px 0px;
+  margin: 0px 0px 100px 0px;
   max-width: 1024px;
 }
 
@@ -22,9 +22,9 @@
 .headerList {
   display: flex;
   gap: 40px;
- 
-  background-color: #315b85;
-  border-radius: 20px;
+  width: 100vw;
+  background-color: #003B95;
+  
 
 
 }
