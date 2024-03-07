@@ -22,7 +22,7 @@ const Datatable = ({columns}) => {
   //them withCredentials: true (tranh loi khong xac thuc duoc nguoi dung cua axios)
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/api/${path}/${id}`,{withCredentials: true,})
+      await axios.delete(`https://mern-booking-web.onrender.com/api/${path}/${id}`,{withCredentials: true,})
       setList(list.filter((item) => item._id !== id));
     } catch(err){
       console.log(err);
