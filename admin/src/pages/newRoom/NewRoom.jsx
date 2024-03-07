@@ -11,7 +11,7 @@ const NewRoom = ({ title }) => {
   const [hotelId, setHotelId] = useState(undefined);
   const [rooms, setRooms] = useState([]);
 
-  const {data, loading, error} = useFetch("http://localhost:8800/api/hotels")
+  const {data, loading, error} = useFetch("https://mern-booking-web.onrender.com/api/hotels")
   
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -21,7 +21,7 @@ const NewRoom = ({ title }) => {
     e.preventDefault()
     const roomNumber = rooms.split(",").map((room)=>({roomNumber: room}))
     try{
-      await axios.post(`http://localhost:8800/api/rooms/${hotelId}`, {...info, roomNumber}, {withCredentials: true})
+      await axios.post(`https://mern-booking-web.onrender.com/api/rooms/${hotelId}`, {...info, roomNumber}, {withCredentials: true})
     }catch(err){
       console.log(err)
     }
