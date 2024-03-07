@@ -24,6 +24,7 @@ const Login = () => {
     try {
       const res = await axios.post(
         "https://mern-booking-web.onrender.com/api/auth/login",
+        //"http://localhost:8800/api/auth/login",
         credentials,
         {
           withCredentials: true,
