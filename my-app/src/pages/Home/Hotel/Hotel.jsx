@@ -29,7 +29,7 @@ const Hotel = () => {
   const { user } = useContext(AuthContext);
 
   const { data, loading, error } = useFetch(
-    `http://localhost:8800/api/hotels/find/${id}`
+    `https://mern-booking-web.onrender.com/api/hotels/find/${id}`
   );
 
   if (error) {

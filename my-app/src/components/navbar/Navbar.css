@@ -14,6 +14,7 @@
   color: white;
 }
 
+
 .Logo {
   display: flex;
   gap: 3px;
@@ -30,7 +31,7 @@
   font-weight: 800;
 }
 
-.avatar{
+.avatar img{
   height: 35px;
   width: 35px;
   object-fit: cover;

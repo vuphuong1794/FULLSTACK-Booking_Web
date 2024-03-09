@@ -4,7 +4,7 @@ import useFetch from "../Hooks/useFetch";
 
 const FeaturedProperties = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:8800/api/hotels?featured=true"
+    "https://mern-booking-web.onrender.com/api/hotels?featured=true"
   );
 
   const limitedData = data && data.slice(0, 4);

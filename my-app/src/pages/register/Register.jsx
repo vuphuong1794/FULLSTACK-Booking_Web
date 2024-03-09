@@ -41,11 +41,11 @@ const Register = ({inputs}) => {
           img: url
         }
 
-        await axios.post("http://localhost:8800/api/auth/register", newUser, {withCredentials: true});
+        await axios.post("https://mern-booking-web.onrender.com/api/auth/register", newUser, {withCredentials: true});
         dispatch({ type: "LOGIN_START" });
   
       const res = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        "https://mern-booking-web.onrender.com/api/auth/login",
         newUser
       )
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
