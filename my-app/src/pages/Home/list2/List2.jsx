@@ -22,7 +22,7 @@ const List = () => {
   }
 */
   const { data, loading, error, reFetch } = useFetch(
-    "http://localhost:8800/api/hotels?city=baria"
+    "https://mern-booking-web.onrender.com/api/hotels?city=baria"
   );
 
   const handleClicked = () => {

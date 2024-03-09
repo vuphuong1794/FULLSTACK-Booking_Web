@@ -1,43 +1,50 @@
 .header {
-  background-image: url("https://kenhhomestay.com/wp-content/uploads/2018/09/resort-vinh-hy-1.jpg");
+  background-image: url("https://imageio.forbes.com/specials-images/imageserve/5cdb058a5218470008b0b00f/Nobu-Ryokan-Malibu/0x0.jpg?format=jpg&height=1009&width=2000");
   color: white;
   display: flex;
   justify-content: center;
   position: relative;
   background-repeat: no-repeat;
-  background-size: 100vw;
+  background-size: cover;
+  padding: 20px;
 }
-
 
 .headerContainer {
   width: 100%;
-  margin: 0px 0px 100px 0px;
+  margin: -20px 0 100px 0px;
   max-width: 1024px;
 }
 
-.headerContainer.listMode {
-  margin: 20px 0px 0px 0px;
+.header.headerListMode {
+  background-image: none;
+
 }
 
 .headerList {
   display: flex;
-  gap: 40px;
-  width: 100vw;
+  justify-content: center;
   background-color: #003B95;
-  
-
-
+  padding: 0 0 10px;
+  gap: 65px;
 }
 
-.headerListItem {
+.headerListItem  {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px;
+  padding: 10px 15px;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
 }
 
+.headerListItem a{
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
 .headerListItem:hover {
-  padding: 12px;
+  padding: 10px 15px;
   border-radius: 20px;
   background-color: rgb(26,79,160);
 }
@@ -61,6 +68,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 0;
 }
 
 .headerBtn:hover {
@@ -130,6 +138,7 @@
   display: flex;
   margin: 10px;
   justify-content: space-between;
+  align-items: center;
 }
 
 .optionCounter {
@@ -137,6 +146,7 @@
   gap: 10px;
   color: black;
   font-size: 12px;
+  align-items: center;
 }
 
 .optionCounterBtn {
@@ -151,4 +161,8 @@
 
 .optionCounterBtn:disabled {
   cursor: not-allowed;
+}
+
+.headerTitle{
+  font-size: 40px;
 }

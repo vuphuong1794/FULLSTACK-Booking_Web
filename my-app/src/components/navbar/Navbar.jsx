@@ -47,8 +47,8 @@ const Navbar = () => {
           </div>
           {user ? (
           <div className="user" onClick={handleCLick}>
-            <div>
-              {user.img ? <img src={user.img} className="avatar"/> : <img src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}/>}</div>
+            <div className="avatar">
+              {user.img ? <img src={user.img}/> : <img src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}/>}</div>
             {user.username}
             </div>
         ) : (

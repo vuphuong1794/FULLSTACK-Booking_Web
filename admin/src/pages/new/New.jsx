@@ -35,7 +35,7 @@ const New = ({ inputs, title }) => {
           img: url
         }
 
-        await axios.post("http://localhost:8800/api/auth/register", newUser, {withCredentials: true});
+        await axios.post("https://mern-booking-web.onrender.com/api/auth/register", newUser, {withCredentials: true});
        
         setClicked(true)
       }catch(err){

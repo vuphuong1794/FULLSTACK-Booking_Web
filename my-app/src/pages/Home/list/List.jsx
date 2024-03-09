@@ -22,7 +22,7 @@ const List = () => {
   }
 
   const { data, loading, error, reFetch } = useFetch(
-    `http://localhost:8800/api/hotels?city=${destination}&min=${min || 0}&max=${
+    `https://mern-booking-web.onrender.com/api/hotels?city=${destination}&min=${min || 0}&max=${
       max || 999
     }`
   );
