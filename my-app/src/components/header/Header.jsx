@@ -13,7 +13,7 @@ import { useContext, useState } from "react";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { searchContext } from "../../context/searchContext";
 import { AuthContext } from "../../context/authContext";
 
@@ -78,8 +78,10 @@ const Header = ({ type }) => {
           className={`headerListItem ${activeItem === "Car rentals" ? "active" : ""}`}
           onClick={() => setActiveItem("Car rentals")}
         >
-          <FontAwesomeIcon icon={faCar} />
-          <span>Car rentals</span>
+          <Link to="/rentcar">
+            <FontAwesomeIcon icon={faCar} />
+            <span>Car rentals</span>
+          </Link>
         </div>
         <div
           className={`headerListItem ${

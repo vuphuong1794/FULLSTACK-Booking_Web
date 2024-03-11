@@ -4,15 +4,22 @@ import { faBell, faCircleQuestion, faPlaneDeparture } from "@fortawesome/free-so
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
+import UserMenu from "../userMenu/userMenu";
+
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [click, setClick] =  useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const {dispatch} = useContext(AuthContext);
 
   const handleCLick = ()=>{
     setClick(!click)
   }
+
+  const handleToggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleLogout=()=>{
     dispatch({ type: "LOGOUT"})
@@ -46,11 +53,15 @@ const Navbar = () => {
             <span className="property">List your property</span>
           </div>
           {user ? (
-          <div className="user" onClick={handleCLick}>
-            <div className="avatar">
-              {user.img ? <img src={user.img}/> : <img src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}/>}</div>
-            {user.username}
+          <div className="userContainer">
+            <div className="user" onClick={handleToggleMenu}>
+              <div className="avatar">
+                {user.img ? <img src={user.img}/> : <img src={"https://i.ibb.co/MBtjqXQ/no-avatar.gif"}/>}
+                {user.username}
+              </div>
             </div>
+            {isMenuOpen && <UserMenu handleLogout={handleLogout} />}
+          </div>
         ) : (
           <div className="navItems">
             <Link to="/register">
@@ -61,9 +72,6 @@ const Navbar = () => {
             </Link>
           </div>
         )}
-        {
-          click && <button className="logOut" onClick={handleLogout}>Logout</button>
-        }
         </div>
 
       </div>

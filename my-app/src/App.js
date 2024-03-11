@@ -8,7 +8,7 @@ import List2 from "./pages/Home/list2/List2"
 import Register from "./pages/register/Register";
 import { userInputs } from "./formSource";
 import RentCar from "./pages/RentCar/RentCar";
-
+import Cart from "./components/cart/Cart.jsx"
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register inputs={userInputs}/>}/>
         <Route path="/rentcar" element={<RentCar/>}/>
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
     </BrowserRouter>
   );

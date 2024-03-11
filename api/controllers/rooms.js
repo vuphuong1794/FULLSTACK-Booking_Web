@@ -1,6 +1,7 @@
 import Room from "../models/Room.js";
 import Hotels from "../models/Hotels.js";
-
+import User from "../models/Users.js"
+/*
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   const newRoom = new Room(req.body);
@@ -18,7 +19,60 @@ export const createRoom = async (req, res, next) => {
     next(err);
   }
 };
+*/
 
+//thêm vào Room
+export const createRoom = async (req, res, next) => {
+  const hotelId = req.params.hotelid;
+  const newRoom = new Room(req.body);
+  try {
+    const saveRoom = await newRoom.save();
+    try {
+      if(req.body.user){
+        const user = User.findById(req.body.user)
+        await user.updateOne({$push: {bookedRooms: saveRoom._id}})
+      }
+      await Hotels.findByIdAndUpdate(hotelId, {
+        $push: { rooms: saveRoom._id },
+      });
+    } catch (err) {
+      next(err);
+    }
+    res.status(200).json(saveRoom);
+  } catch (err) {
+    next(err);
+  }
+};
+
+/*
+export const createRoom = async (req, res, next) => {
+  const hotelId = req.params.hotelid;
+  const newRoom = new Room(req.body);
+  try {
+    const room = await Room.findById(hotelId);
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+    const saveRoom = await newRoom.save();
+    try {
+      if(req.body.user){
+        roomNumber.user = req.body.user;
+        const user = User.findById(req.body.user)
+        await user.updateOne({$push: {bookedRooms: saveRoom._id}})
+      }
+      await Hotels.findByIdAndUpdate(hotelId, {
+        $push: { rooms: saveRoom._id },
+      });
+    } catch (err) {
+      next(err);
+    }
+    res.status(200).json(saveRoom);
+  } catch (err) {
+    next(err);
+  }
+};
+*/
 export const updateRoom = async (req, res, next) => {
   try {
     const updatedRoom = await Room.findByIdAndUpdate(
