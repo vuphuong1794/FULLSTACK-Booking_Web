@@ -1,7 +1,7 @@
 import Room from "../models/Room.js";
 import Hotels from "../models/Hotels.js";
 import User from "../models/Users.js"
-/*
+
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   const newRoom = new Room(req.body);
@@ -19,9 +19,9 @@ export const createRoom = async (req, res, next) => {
     next(err);
   }
 };
-*/
 
-//thêm vào Room
+
+/*thêm vào Room
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   const newRoom = new Room(req.body);
@@ -44,7 +44,7 @@ export const createRoom = async (req, res, next) => {
   }
 };
 
-/*
+
 export const createRoom = async (req, res, next) => {
   const hotelId = req.params.hotelid;
   const newRoom = new Room(req.body);
