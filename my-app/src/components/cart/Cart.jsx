@@ -8,7 +8,7 @@ const BookedRooms = ({ userId }) => {
   useEffect(() => {
     const fetchBookedRooms = async () => {
       try {
-        const response = await axios.get("http://localhost:8800/api/users/65a62cb4aec8d3e3257645c2", {withCredentials: true});
+        const response = await axios.get("https://mern-booking-web.onrender.com/api/users/65a62cb4aec8d3e3257645c2", {withCredentials: true});
         setRooms(response.data);
         setLoading(false);
       } catch (error) {
