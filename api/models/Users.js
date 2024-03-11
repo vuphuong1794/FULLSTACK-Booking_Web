@@ -35,6 +35,12 @@ const UserSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    bookedRooms: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Room",
+      },
+    ],
   },
   { timestamps: true }
 );

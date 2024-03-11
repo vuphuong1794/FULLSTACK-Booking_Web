@@ -3,6 +3,7 @@
   background-color: #003B95;
   display: flex;
   justify-content: center;
+ 
 }
 
 .navContainer {
@@ -29,6 +30,11 @@
 
 .logo_Text {
   font-weight: 800;
+}
+
+.avatar{
+  display: flex;
+  align-items: center;
 }
 
 .avatar img{
@@ -77,12 +83,17 @@
   position: relative;
 }
 
-.user{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+
+.user {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    top: 15px;
 }
+
 
 .navButton {
   margin-left: 20px;
@@ -102,6 +113,4 @@
   border-radius: 5px;
 }
 
-.logOut{
-  display: block;
-}
+

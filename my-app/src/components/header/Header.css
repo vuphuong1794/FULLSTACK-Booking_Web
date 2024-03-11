@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding: 20px;
+  height: 300px;
 }
 
 .headerContainer {
@@ -76,12 +77,12 @@
   border: 2px solid white;
   border-radius: 5px;
 }
-
+/*
 @media (max-width: 900px) {
   .headerSearch {
     flex-direction: column;
   }
-}
+}*/
 .headerSearch {
   height: 30px;
   background-color: white;
