@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { SearchContextProvider } from "./context/searchContext";
 import { AuthContextProvider } from "./context/authContext";
+import { TypeContextProvider } from "./context/typeContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,29 +1,20 @@
 import "./List2.css";
 import Navbar from "../../../components/navbar/Navbar";
 import Header from "../../../components/header/Header";
-import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import { format } from "date-fns";
-import { DateRange } from "react-date-range";
 import SearchItem from "../../../components/searchItem/SearchItem";
 import useFetch from "../../../Hooks/useFetch";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const List = () => {
-  /*
+  
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
-  const [dates, setDates] = useState(location.state.dates);
-  const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
-  const [min, setMin] = useState(undefined);
-  const [max, setMax] = useState(undefined)
-  const handleChange = (e) =>{
-    setDestination(e.target.value)
-  }
-*/
+  const [selectType, setSelectType] = useState(location.state.selectType);
+
   const { data, loading, error, reFetch } = useFetch(
-    "https://mern-booking-web.onrender.com/api/hotels?city=baria"
+    `https://mern-booking-web.onrender.com/api/hotels?type=${selectType}`
   );
+  console.log(data);
 
   const handleClicked = () => {
     reFetch();
@@ -32,15 +23,13 @@ const List = () => {
   return (
     <div>
       <Navbar />
-      <Header  />
-      
           <div className="listResult">
             {loading ? (
               "Loading"
             ) : (
               <>
                 {data.map((item) => (
-                  <SearchItem item={item} key={item._id} />
+                  <div className="test" key={item._id}>{item.title}</div>
                 ))}
               </>
             )}

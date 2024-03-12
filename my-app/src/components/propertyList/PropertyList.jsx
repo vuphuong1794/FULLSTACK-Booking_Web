@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import "./PropertyList.css";
 import useFetch from "../../Hooks/useFetch";
 import {useNavigate} from "react-router-dom"
-import { searchContext } from "../../context/searchContext";
+import { typeContext } from "../../context/typeContext";
 
 const PropertyList = () => {
   const [selectType, setSelectType] = useState(""); 
   const navigate = useNavigate();
 
-
+  const { dispatch } = useContext(typeContext);
   const { data, loading, error } = useFetch(
     "https://mern-booking-web.onrender.com/api/hotels/countByType"
   );
@@ -24,7 +24,8 @@ const PropertyList = () => {
   //khi ấn vào mỗi bức hình nó sẽ dẫn đến API có path tương ứng
  const handleClick=(type)=>{  
   setSelectType(type);
-  
+  dispatch({ type: "NEW_SEARCH", payload: { selectType } });
+  navigate("/hotelsType", {state: selectType})
  }
 
   return (
