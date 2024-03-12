@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BookedRooms = ({ userId }) => {
-  const [rooms, setRooms] = useState([]);
+const BookedRooms = () => {
+  const [bookedRooms, setBookedRooms] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchBookedRooms = async () => {
       try {
-        const response = await axios.get("https://mern-booking-web.onrender.com/api/users/65a62cb4aec8d3e3257645c2", {withCredentials: true});
-        setRooms(response.data);
+        const response = await axios.get("https://mern-booking-web.onrender.com/api/users/65a62cb4aec8d3e3257645c2", { withCredentials: true });
+        console.log('API Response:', response.data);
+        setBookedRooms(response.data.bookedRooms);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching booked rooms:', error);
@@ -18,21 +19,19 @@ const BookedRooms = ({ userId }) => {
     };
 
     fetchBookedRooms();
-  }, [userId]);
+  }, []);
+
+  console.log('Booked Rooms:', bookedRooms); // Add this line for debugging
 
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (rooms.length === 0) {
-    return <div>No booked rooms found.</div>;
   }
 
   return (
     <div>
       <h2>Booked Rooms</h2>
       <ul>
-        {rooms.map((room) => (
+        {bookedRooms.map((room) => (
           <li key={room._id}>
             <h3>{room.title}</h3>
             <p>Price: {room.price}</p>
@@ -40,16 +39,13 @@ const BookedRooms = ({ userId }) => {
             <p>Description: {room.desc}</p>
             <p>Room Numbers:</p>
             <ul>
-              {room.roomNumbers.map((roomNumber) => (
-                <li key={roomNumber.number}>
+              {room.roomNumber.map((roomNumber) => (
+                <li key={roomNumber._id}>
                   Number: {roomNumber.number}
-                  {roomNumber.bookedBy && (
-                    <span> - Booked by: {roomNumber.bookedBy.name}</span>
-                  )}
                   <p>Unavailable Dates:</p>
                   <ul>
                     {roomNumber.unavailableDates.map((date, index) => (
-                      <li key={index}>{date.toLocaleDateString()}</li>
+                      <li key={index}>{new Date(date).toLocaleDateString()}</li>
                     ))}
                   </ul>
                 </li>
