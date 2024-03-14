@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import List from "./pages/Home/list/List";
 import Hotel from "./pages/Home/Hotel/Hotel";
@@ -9,10 +9,24 @@ import Register from "./pages/register/Register";
 import { userInputs } from "./formSource";
 import RentCar from "./pages/RentCar/RentCar";
 import Cart from "./components/cart/Cart.jsx"
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext.js";
 function App() {
+
+  const ProtectedRoute = ({ children }) => {
+    const { user } = useContext(AuthContext);
+
+    if (!user) {
+      return <Navigate to="/login" />;
+    }
+
+    return children;
+  };
+
   return (
     <BrowserRouter>
       <Routes>
+        
         <Route path="/" element={<Home />} />
         <Route path="/hotels" element={<List/>} />
         <Route path="/hotelsType" element={<List2 />} />
