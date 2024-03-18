@@ -57,25 +57,36 @@ const Header = ({ type }) => {
 
   const { user } = useContext(AuthContext);
   return (
-        <><div className="headerList">
+    <>
+      <div className="headerList">
+        <Link to="/">
+          <div
+            className={`headerListItem ${
+              activeItem === "Stays" ? "active" : ""
+            }`}
+            onClick={() => setActiveItem("Stays")}
+          >
+            <FontAwesomeIcon icon={faBed} />
+            <span>Stays</span>
+          </div>
+        </Link>
+
         <div
-          className={`headerListItem ${activeItem === "Stays" ? "active" : ""}`}
-          onClick={() => setActiveItem("Stays")}
-        >
-          <FontAwesomeIcon icon={faBed} />
-          <span>Stays</span>
-        </div>
-        
-        <div
-          className={`headerListItem ${activeItem === "Flights" ? "active" : ""}`}
+          className={`headerListItem ${
+            activeItem === "Flights" ? "active" : ""
+          }`}
           onClick={() => setActiveItem("Flights")}
         >
           <FontAwesomeIcon icon={faPlane} />
-          <span><a href="https://flights-vn.gotogate.com/rf/start"> Flights</a></span>
+          <span>
+            <a href="https://flights-vn.gotogate.com/rf/start"> Flights</a>
+          </span>
         </div>
-        
+
         <div
-          className={`headerListItem ${activeItem === "Car rentals" ? "active" : ""}`}
+          className={`headerListItem ${
+            activeItem === "Car rentals" ? "active" : ""
+          }`}
           onClick={() => setActiveItem("Car rentals")}
         >
           <Link to="/rentcar">
@@ -104,7 +115,10 @@ const Header = ({ type }) => {
       </div>
       <div className="header">
         <div
-          className={type === "list" ? "header headerListMode" : "headerContainer"}>
+          className={
+            type === "list" ? "header headerListMode" : "headerContainer"
+          }
+        >
           {type !== "list" && (
             <>
               <h1 className="headerTitle">
@@ -114,7 +128,9 @@ const Header = ({ type }) => {
                 Get rewarded for your travels - unlock instant savings of 10% or
                 more with a free HiBooking account{" "}
               </p>
-              {!user && <button className="headerBtn">Sign in / Register</button>}
+              {!user && (
+                <button className="headerBtn">Sign in / Register</button>
+              )}
               <div className="headerSearch">
                 <div className="headerSearchItem">
                   <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -122,10 +138,14 @@ const Header = ({ type }) => {
                     type="text"
                     placeholder="Where are you going?"
                     className="headerSearchInput"
-                    onChange={(e) => setDestination(e.target.value)} />
+                    onChange={(e) => setDestination(e.target.value)}
+                  />
                 </div>
                 <div className="headerSearchItem">
-                  <FontAwesomeIcon icon={faCalendarDays} className="headerIcon" />
+                  <FontAwesomeIcon
+                    icon={faCalendarDays}
+                    className="headerIcon"
+                  />
                   <span
                     onClick={() => setOpenDate(!openDate)}
                     className="headerSearchText"
@@ -142,7 +162,8 @@ const Header = ({ type }) => {
                       moveRangeOnFirstSelection={false}
                       ranges={dates}
                       className="date"
-                      minDate={new Date()} />
+                      minDate={new Date()}
+                    />
                   )}
                 </div>
                 <div className="headerSearchItem">
@@ -222,7 +243,8 @@ const Header = ({ type }) => {
             </>
           )}
         </div>
-      </div></>
+      </div>
+    </>
   );
 };
 
