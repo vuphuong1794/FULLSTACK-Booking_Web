@@ -11,6 +11,7 @@
   gap: 10px;
   display: flex;
   flex-direction: column;
+
 }
 
 .fpImg {
@@ -26,6 +27,7 @@
 
 .fpCity {
   font-weight: 300;
+  margin: 5px;
 }
 
 .fpPrice {
