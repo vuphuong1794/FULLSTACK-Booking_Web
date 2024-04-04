@@ -139,7 +139,16 @@ const Header = ({ type }) => {
                     placeholder="Where are you going?"
                     className="headerSearchInput"
                     onChange={(e) => setDestination(e.target.value)}
+                    list="items"
                   />
+                  <datalist id="items">
+                    <option value="Ho Chi Minh">Ho Chi Minh</option>
+                    <option value="ha long">ha long</option>
+                    <option value="ha noi">ha noi</option>
+                    <option value="phu quoc">phu quoc</option>
+                    <option value="usa">usa</option>
+                    
+                  </datalist>
                 </div>
                 <div className="headerSearchItem">
                   <FontAwesomeIcon
