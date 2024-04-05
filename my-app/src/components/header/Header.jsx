@@ -116,7 +116,7 @@ const Header = ({ type }) => {
       <div className="header">
         <div
           className={
-            type === "list" ? "header headerListMode" : "headerContainer"
+            type === "list" ? "header headerListMode" : "header"
           }
         >
           {type !== "list" && (
@@ -141,7 +141,7 @@ const Header = ({ type }) => {
                     onChange={(e) => setDestination(e.target.value)}
                     list="items"
                   />
-                  <datalist id="items">
+                  <datalist id="items" className="datalist">
                     <option value="Ho Chi Minh">Ho Chi Minh</option>
                     <option value="ha long">ha long</option>
                     <option value="ha noi">ha noi</option>

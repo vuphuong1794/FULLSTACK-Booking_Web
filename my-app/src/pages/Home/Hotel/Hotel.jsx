@@ -9,9 +9,10 @@ import {
   faCircleArrowRight,
   faCircleXmark,
   faLocationDot,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../../Hooks/useFetch";
 import { searchContext } from "../../../context/searchContext";
 import { AuthContext } from "../../../context/authContext";
@@ -76,10 +77,19 @@ const Hotel = () => {
       navigate("/login");
     }
   };
+
+  const [showFullDesc, setShowFullDesc] = useState(false);
+
+  const toggleDesc = () => {
+    setShowFullDesc(!showFullDesc);
+  };
+
   return (
     <div>
       <Navbar />
-      <Header type="list" />
+      <Link to="/" style={{display: "flex", alignItems: "center",padding: "10px"}}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </Link>
       {loading ? (
         "Loading"
       ) : (
@@ -141,9 +151,24 @@ const Hotel = () => {
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
                 <h1 className="hotelTitle">{data.title}</h1>
-                <p className="hotelDesc">{data.desc}</p>
+                <p
+                  className="hotelDesc"
+                  style={{
+                    maxHeight: showFullDesc ? "none" : "50vh",
+                    overflow: "hidden",
+                  }}
+                >
+                  {data.desc}
+                </p>
+                {!showFullDesc && (
+                  <button onClick={toggleDesc}>Xem thêm</button>
+                )}
+                {showFullDesc && <button onClick={toggleDesc}>Ẩn bớt</button>}
               </div>
-              <div className="hotelDetailsPrice">
+              <div
+                className="hotelDetailsPrice"
+                style={{ display: showFullDesc ? "none" : "flex" }}
+              >
                 <h1>Perfect for a {days}-night stay!</h1>
                 <span>
                   Located in the real heart of Krakow, this property has an

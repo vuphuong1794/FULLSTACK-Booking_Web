@@ -10,6 +10,8 @@
   height: 300px;
   @media only screen and (max-width: 480px){
     width: 100%;
+    flex-direction: column;
+    top: 0;
     padding: 0;
   }
 }
@@ -23,8 +25,9 @@
   }
 }
 
-.header.headerListMode {
+.header .headerListMode {
   background-image: none;
+  display: none;
 }
 
 .headerList {
@@ -71,6 +74,11 @@
 
 .headerDesc {
   margin: 20px 0px;
+ @media only screen and (max-width: 480px){
+  margin: 3px;
+  color: darkorchid;
+
+ }
 }
 
 .headerBtn {
@@ -205,5 +213,7 @@
   @media only screen and (max-width: 480px){
     font-size: 30px;
     color: #fff;
+    margin-top: -100px;
+    
   }
 }
