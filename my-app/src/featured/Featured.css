@@ -5,6 +5,9 @@
   justify-content: space-between;
   gap: 20px;
   z-index: 1;
+  @media only screen and (max-width: 480px){
+    width: 100%;
+  }
 }
 
 .featuredItem {
@@ -14,16 +17,29 @@
   overflow: hidden;
   height: 250px;
   flex: 1;
+  @media only screen and (max-width: 480px){
+    height: 200px;
+  }
 }
 
 .featuredImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+
 }
 
 .featuredTitles h1 {
   margin-bottom: -25px;
+  @media only screen and (max-width: 480px){
+    font-size: 20px;
+  }
+}
+
+.featuredTitles h2{
+  @media only screen and (max-width: 480px){
+    font-size: 17px;
+  }
 }
 .featuredTitles {
   position: absolute;
