@@ -40,11 +40,13 @@
 }
 
 .avatar{
-  position: absolute;
   align-items: center;
   display: flex;
+  top: -2px;
+  right: 10px;
   @media only screen and (max-width: 480px){
-    top: -2px;
+    position: absolute;
+    top: 3px;
     right: 10px;
   }
 
