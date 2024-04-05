@@ -2,6 +2,10 @@
   width: 100%;
   width: 1024px;
   font-size: 12px;
+  @media only screen and (max-width: 480px){
+    width: 100%;
+    background-color: aliceblue;
+  }
 }
 
 .fLists {
@@ -9,6 +13,10 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
+  @media only screen and (max-width:480px){
+    width: 50%;
+    flex-wrap: wrap;
+  }
 }
 
 .fList {

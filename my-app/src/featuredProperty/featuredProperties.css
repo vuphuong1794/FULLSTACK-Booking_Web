@@ -2,22 +2,33 @@
   width: 100%;
   max-width: 1024px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
+  @media only screen and (max-width: 480px){
+    width: 50%;
+  }
 }
 
 .fpItem {
   flex: 1;
   gap: 10px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-
+  @media only screen and (max-width: 480px){
+    gap: 10px;
+  }
 }
 
 .fpImg {
   width: 100%;
   height: 250px;
   object-fit: cover;
+  @media only screen and (max-width: 480px){
+    height: 150px;
+    width: 100%;
+  }
 }
 
 .fpName {
