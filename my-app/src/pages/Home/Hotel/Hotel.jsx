@@ -9,19 +9,34 @@ import {
   faCircleArrowRight,
   faCircleXmark,
   faLocationDot,
+  faArrowLeft,
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../../Hooks/useFetch";
 import { searchContext } from "../../../context/searchContext";
 import { AuthContext } from "../../../context/authContext";
 import Reserve from "../../../components/Reserve/Reserve";
+import { DateRange } from "react-date-range";
+import { format } from "date-fns";
+import "react-date-range/dist/styles.css"; // main css file
+import "react-date-range/dist/theme/default.css";
 
 const Hotel = () => {
   const location = useLocation();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+
+  const [openDate, setOpenDate] = useState(false);
+  const [dates1, setDates1] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
 
   const navigate = useNavigate();
 
@@ -76,10 +91,23 @@ const Hotel = () => {
       navigate("/login");
     }
   };
+
+  const [showFullDesc, setShowFullDesc] = useState(false);
+
+  const toggleDesc = () => {
+    setShowFullDesc(!showFullDesc);
+  };
+
   return (
     <div>
       <Navbar />
       <Header type="list" />
+      <Link
+        to="/"
+        style={{ display: "flex", alignItems: "center", padding: "10px" }}
+      >
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </Link>
       {loading ? (
         "Loading"
       ) : (
@@ -111,9 +139,13 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow" onClick={handleClick}>
-              Reserve or Book Now!
-            </button>
+            {!days ? (
+              <></>
+            ) : (
+              <button className="bookNow" onClick={handleClick}>
+                Reserve or Book Now!
+              </button>
+            )}
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />
@@ -141,21 +173,69 @@ const Hotel = () => {
             <div className="hotelDetails">
               <div className="hotelDetailsTexts">
                 <h1 className="hotelTitle">{data.title}</h1>
-                <p className="hotelDesc">{data.desc}</p>
+                <p
+                  className="hotelDesc"
+                  style={{
+                    maxHeight: showFullDesc ? "none" : "30vh",
+                    overflow: "hidden",
+                  }}
+                >
+                  {data.desc}
+                </p>
+                {!showFullDesc && (
+                  <button onClick={toggleDesc}>Xem thêm</button>
+                )}
+                {showFullDesc && <button onClick={toggleDesc}>Ẩn bớt</button>}
               </div>
-              <div className="hotelDetailsPrice">
+              <div
+                className="hotelDetailsPrice"
+                style={{ display: showFullDesc ? "none" : "flex" }}
+              >
                 <h1>Perfect for a {days}-night stay!</h1>
                 <span>
                   Located in the real heart of Krakow, this property has an
                   excellent location score of 9.8!
                 </span>
-                <h2>
-                  <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
-                  nights)
-                </h2>
-                <button onClick={handleClick}>Reserve or Book Now!</button>
+                {!days ? (
+                  <Link to="/">
+                    <h2>Select date to see price</h2>
+                  </Link>
+                ) : (
+                  <>
+                    <h2>
+                      <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                      nights)
+                    </h2>
+                    <button onClick={handleClick}>Reserve or Book Now!</button>
+                  </>
+                )}
               </div>
             </div>
+            <div className="headerSearchItem">
+                  <FontAwesomeIcon
+                    icon={faCalendarDays}
+                    className="headerIcon"
+                  />
+                  <span
+                    onClick={() => setOpenDate(!openDate)}
+                    className="headerSearchText"
+                  >
+                    {`${format(dates1[0].startDate, "MM/dd/yyyy")} to ${format(
+                      dates1[0].endDate,
+                      "MM/dd/yyyy"
+                    )}`}
+                  </span>
+                  {openDate && (
+                    <DateRange
+                      editableDateInputs={true}
+                      onChange={(item) => setDates1([item.selection])}
+                      moveRangeOnFirstSelection={false}
+                      ranges={dates}
+                      className="date1"
+                      minDate={new Date()}
+                    />
+                  )}
+                </div>
           </div>
           <MailList />
           <Footer />

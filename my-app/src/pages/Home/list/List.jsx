@@ -17,14 +17,14 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  const handleChange = (e) =>{
-    setDestination(e.target.value)
-  }
+  const handleChange = (e) => {
+    setDestination(e.target.value);
+  };
 
   const { data, loading, error, reFetch } = useFetch(
-    `https://mern-booking-web.onrender.com/api/hotels?city=${destination}&min=${min || 0}&max=${
-      max || 999
-    }`
+    `https://mern-booking-web.onrender.com/api/hotels?city=${destination}&min=${
+      min || 0
+    }&max=${max || 999}`
   );
 
   const handleClicked = () => {
@@ -41,7 +41,11 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" onChange={handleChange}/>
+              <input
+                placeholder={destination}
+                type="text"
+                onChange={handleChange}
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
@@ -110,6 +114,13 @@ const List = () => {
               </div>
             </div>
             <button onClick={handleClicked}>Search</button>
+          </div>
+          <div className="mobile-search">
+            <input
+              placeholder={destination}
+              type="text"
+              onChange={handleChange}
+            />
           </div>
           <div className="listResult">
             {loading ? (

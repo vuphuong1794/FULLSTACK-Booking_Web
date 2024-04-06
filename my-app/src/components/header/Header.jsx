@@ -113,14 +113,15 @@ const Header = ({ type }) => {
           <span>Airport taxis</span>
         </div>
       </div>
-      <div className="header">
-        <div
+      <div
           className={
-            type === "list" ? "header headerListMode" : "headerContainer"
+            type === "list" ? "headerListMode" : "header"
           }
         >
+      <div className="header">
+    
           {type !== "list" && (
-            <>
+            <div className="header-wrap">
               <h1 className="headerTitle">
                 A lifetime of discounts? It's Genius.
               </h1>
@@ -129,7 +130,7 @@ const Header = ({ type }) => {
                 more with a free HiBooking account{" "}
               </p>
               {!user && (
-                <button className="headerBtn">Sign in / Register</button>
+                <button className="headerBtn1">Sign in / Register</button>
               )}
               <div className="headerSearch">
                 <div className="headerSearchItem">
@@ -141,7 +142,7 @@ const Header = ({ type }) => {
                     onChange={(e) => setDestination(e.target.value)}
                     list="items"
                   />
-                  <datalist id="items">
+                  <datalist id="items" className="datalist">
                     <option value="Ho Chi Minh">Ho Chi Minh</option>
                     <option value="ha long">ha long</option>
                     <option value="ha noi">ha noi</option>
@@ -249,7 +250,7 @@ const Header = ({ type }) => {
                   </button>
                 </div>
               </div>{" "}
-            </>
+            </div>
           )}
         </div>
       </div>
