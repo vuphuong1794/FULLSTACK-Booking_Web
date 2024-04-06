@@ -23,7 +23,7 @@ const FeaturedProperties = () => {
                   to={`/hotels/${item._id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <img src={item.photos[0]} alt="" className="fpImg" />
+                  <div><img src={item.photos[0]} alt="" className="fpImg" /></div>
                   <div className="details">
                     <span className="fpName">{item.name}</span>
                     <span className="fpCity">{item.city}</span>
@@ -31,7 +31,7 @@ const FeaturedProperties = () => {
                       Starting from ${item.cheapestPrice}
                     </span>
                     <div className="fpRating">
-                      <button>{item.rating}</button>
+                      <button>{item.rating}10</button>
                       <span>Excellent</span>
                     </div>
                   </div>

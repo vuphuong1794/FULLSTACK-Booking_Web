@@ -16,10 +16,15 @@
 .mailTitle {
   margin: 0;
   padding: 0;
+  font-weight: 700;
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
+  @media only screen and (max-width: 480px){
+    font-size: 24px;
+    font-weight: 700;
+  }
 }
 
 .mailDesc {
@@ -58,7 +63,6 @@
 
 .mailInputContainer > button {
   height: 50px;
- 
   background-color: #0071c2;
   color: white;
   font-weight: 500;

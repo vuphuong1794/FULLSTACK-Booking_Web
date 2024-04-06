@@ -6,7 +6,7 @@
   justify-content: space-between;
   gap: 20px;
   @media only screen and (max-width: 480px){
-    width: 50%;
+    width: 80%;
   }
 }
 
@@ -18,10 +18,15 @@
   flex-direction: column;
   @media only screen and (max-width: 480px){
     gap: 10px; 
+    flex-direction: row;
+  }
+}
 
-    .details{
-      flex-direction: row;
-    }
+.details{
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: 480px){
+    flex-direction: row;
   }
 }
 
@@ -51,10 +56,11 @@
 
 .fpRating > button {
   background-color: #003580;
-  color: white;
+  color: whitesmoke;
   border: none;
-  padding: 3px;
-  margin-right: 10px;
+  width: 30px;
+  padding: 10px;
+  margin: 10px;
   font-weight: bold;
 }
 

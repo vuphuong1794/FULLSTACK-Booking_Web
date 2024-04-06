@@ -121,6 +121,14 @@
   color: white;
   border-radius: 5px;
   font-weight: 500;
+  @media only screen and (max-width: 480px){
+    display: flex;
+    margin-right: 5px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+  }
 }
 
 .navButton:hover {
