@@ -26,10 +26,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        
         <Route path="/" element={<Home />} />
         <Route path="/hotels" element={<List/>} />
-        <Route path="/hotelsType" element={<List2 />} />
+        <Route path="/hotelsType/:type" element={<List2 />} />
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register inputs={userInputs}/>}/>

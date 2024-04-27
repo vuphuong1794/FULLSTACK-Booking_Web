@@ -121,7 +121,7 @@ const Header = ({ type }) => {
       <div className="header">
     
           {type !== "list" && (
-            <div className="header-wrap">
+            <div className="header-wrap" >
               <h1 className="headerTitle">
                 A lifetime of discounts? It's Genius.
               </h1>
@@ -132,6 +132,7 @@ const Header = ({ type }) => {
               {!user && (
                 <button className="headerBtn1">Sign in / Register</button>
               )}
+              <button className="headerBtn1">Explore</button>
               <div className="headerSearch">
                 <div className="headerSearchItem">
                   <FontAwesomeIcon icon={faBed} className="headerIcon" />
@@ -150,6 +151,7 @@ const Header = ({ type }) => {
                     <option value="usa">usa</option>
                     
                   </datalist>
+                  {openDate && <span onClick={() => setOpenDate(!openDate)} style={{background: "darkcyan", width: "30px", height:"30px", borderRadius: "50%", display: "flex", justifyContent: "center", alignItems: "center"}}>X</span>}
                 </div>
                 <div className="headerSearchItem">
                   <FontAwesomeIcon
@@ -165,7 +167,9 @@ const Header = ({ type }) => {
                       "MM/dd/yyyy"
                     )}`}
                   </span>
+              
                   {openDate && (
+                    
                     <DateRange
                       editableDateInputs={true}
                       onChange={(item) => setDates([item.selection])}

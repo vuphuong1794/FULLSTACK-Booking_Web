@@ -2,7 +2,9 @@ import React from "react";
 import "./Featured.css";
 import useFetch from "../Hooks/useFetch";
 
+
 const Featured = () => {
+
   const { data, loading, error } = useFetch(
     "https://mern-booking-web.onrender.com/api/hotels/countByCity?cities=Ho Chi Minh,ha long,ha noi"
   );

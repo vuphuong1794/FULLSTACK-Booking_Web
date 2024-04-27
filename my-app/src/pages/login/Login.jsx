@@ -41,7 +41,9 @@ const Login = () => {
   console.log(user);
   return (
     <div className="login">
+    
       <div className="loginContainer">
+      <h1 style={{color: "black", fontSize: "30px"}}>Login</h1>
         <input
           type="text"
           className="loginInput"
